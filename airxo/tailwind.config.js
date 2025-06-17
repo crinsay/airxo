@@ -9,10 +9,10 @@ module.exports = {
         background: "#ffffff",
         foreground: "#0e1311",
         goodQuality: "#188031",
-        okayQuality: "#ae863c",
-        badQuality: "#ae863c",
-        dangerousQuality: "#cb232d",
-        veryDangerousQuality: "#7f50db",
+        okayQuality: "#0a66d8",
+        badQuality: "#cc8c2c",
+        dangerousQuality: "#c22c36",
+        veryDangerousQuality: "#643ab7",
         lethalQuality: "#202223"
       }
     },
