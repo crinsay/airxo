@@ -4,6 +4,7 @@ import React from 'react'
 import { shadow } from '@/styles/shadow'
 import { icons } from '@/constants/icons'
 import {qualityColors} from '@/constants/colors'
+import LegendItem from '@/components/LegendItem'
 
 export default function Info() {
   return (
@@ -30,8 +31,8 @@ export default function Info() {
         />
         <LegendItem
           description="Moderate"
-          color={qualityColors.okay}
-          icon={icons.qualityEmojis.okay}
+          color={qualityColors.moderate}
+          icon={icons.qualityEmojis.moderate}
           concentration="13 - 35 µg/m³"
         />
         <LegendItem
@@ -42,14 +43,14 @@ export default function Info() {
         />
         <LegendItem
           description="Unhealthy"
-          color={qualityColors.dangerous}
-          icon={icons.qualityEmojis.dangerous}
+          color={qualityColors.unhealthy}
+          icon={icons.qualityEmojis.unhealthy}
           concentration="55 - 75 µg/m³"
         />
         <LegendItem
           description="Dangerous"
-          color={qualityColors.veryDangerous}
-          icon={icons.qualityEmojis.veryDangerous}
+          color={qualityColors.dangerous}
+          icon={icons.qualityEmojis.dangerous}
           concentration="75 - 110 µg/m³"
         />
         <LegendItem
@@ -59,62 +60,6 @@ export default function Info() {
           concentration="> 110 µg/m³"
         />
       </ScrollView>
-    </View>
-  )
-}
-
-// export function Legend() {
-//   return (
-//     <View className="flex-row items-center justify-between px-6 mt-6 bg-background rounded-full z-10">
-//       <LegendItem label="Good" color="#00FF00" />
-//       <LegendItem label="Moderate" color="#FFFF00" />
-//       <LegendItem label="Unhealthy for Sensitive Groups" color="#FF7F00" />
-//       <LegendItem label="Unhealthy" color="#FF0000" />
-//       <LegendItem label="Very Unhealthy" color="#800080" />
-//     </View>
-//   )
-// }
-
-interface LegendItemProps {
-  description: string;
-  color: string;
-  icon: any;
-  concentration: string;
-}
-
-// export function LegendItem({ description, color, icon, concentration }: LegendItemProps) {
-//   return (
-//     <View className="flex-row items-center justify-between px-6 mt-3 py-6 bg-background rounded-full" 
-//     style={[{
-//       borderColor: color,
-//       borderWidth: 2,
-//       }, shadow.shadow]}>
-//       <Image source={icon} className="w-12 h-12 mr-3" />
-//       <Text className='text-foreground text-lg font-bold mr-3'>{concentration}</Text>
-//       <Text className="text-foreground text-lg mr-3 text-left">{description}</Text>
-//     </View>
-//   )
-// }
-
-export function LegendItem({ description, color, icon, concentration }: LegendItemProps) {
-  return (
-    <View className="flex-row items-center px-6 mt-3 py-6 bg-background rounded-3xl"
-      style={[
-        {
-          borderColor: color,
-          borderWidth: 2,
-        },
-      ]}
-    >
-      <View className="w-[15%] mr-2">
-        <Image source={icon} className="w-12 h-12" />
-      </View>
-
-      <Text className="w-[40%] text-foreground text-lg font-bold mr-2">{concentration}</Text>
-
-      <View className="flex-1">
-        <Text className="text-foreground text-lg font-bold text-left">{description}</Text>
-      </View>
     </View>
   )
 }

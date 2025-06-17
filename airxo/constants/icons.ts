@@ -1,10 +1,10 @@
 import search from "@/assets/icons/search.png";
 import questionMark from "@/assets/icons/question.png";
 import good from "@/assets/icons/good.png";
-import okay from "@/assets/icons/okay.png";
+import moderate from "@/assets/icons/moderate.png";
 import bad from "@/assets/icons/bad.png";
+import unhealthy from "@/assets/icons/unhealthy.png";
 import dangerous from "@/assets/icons/dangerous.png";
-import veryDangerous from "@/assets/icons/veryDangerous.png";
 import lethal from "@/assets/icons/lethal.png";
 
 export const icons = {
@@ -12,10 +12,10 @@ export const icons = {
   questionMark,
   qualityEmojis: {
     good,
-    okay,
+    moderate,
     bad,
+    unhealthy,
     dangerous,
-    veryDangerous,
-    lethal 
+    lethal
   }
 };
