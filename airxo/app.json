@@ -3,7 +3,6 @@
     "name": "Airxo",
     "slug": "airxo",
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/icons/air-quality.png",
     "scheme": "airxo",
     "userInterfaceStyle": "automatic",
