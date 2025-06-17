@@ -1,10 +1,10 @@
-import { StyleSheet, Image, View, Text, ScrollView } from 'react-native'
-import { images } from '@/constants/images'
-import React from 'react'
-import { shadow } from '@/styles/shadow'
-import { icons } from '@/constants/icons'
-import {qualityColors} from '@/constants/colors'
 import LegendItem from '@/components/LegendItem'
+import { qualityColors } from '@/constants/colors'
+import { icons } from '@/constants/icons'
+import { images } from '@/constants/images'
+import { shadow } from '@/styles/shadow'
+import React from 'react'
+import { Image, ScrollView, Text, View } from 'react-native'
 
 export default function Info() {
   return (

@@ -1,4 +1,4 @@
-export const qualityColors ={
+export const qualityColors = {
     good: "#188031",
     moderate: "#0a66d8",
     bad: "#cc8c2c",

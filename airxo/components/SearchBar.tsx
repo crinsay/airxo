@@ -1,14 +1,13 @@
-import { View, Text, Image, StyleSheet, TextInput } from 'react-native'
-import React from 'react'
-import {icons} from '@/constants/icons'
-import {shadow} from '@/styles/shadow'
+import { icons } from '@/constants/icons';
+import { shadow } from '@/styles/shadow';
+import React from 'react';
+import { Image, TextInput, View } from 'react-native';
 
 interface SearchBarProps {
   placeholder: string;
   value?: string;
   onChangeText?: (text: string) => void;
 }
-
 
 export default function SearchBar({ placeholder, value, onChangeText }: SearchBarProps) {
   return (
