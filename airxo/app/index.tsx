@@ -3,14 +3,32 @@ import StationCard from "@/components/StationCard";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import useQuery from "@/hooks/useQuery";
-import { fetchAllStations } from "@/services/api";
+import { fetchAllStations, filterStations, StationData } from "@/services/api";
 import { Link } from "expo-router";
-import { JSX } from "react";
+import { JSX, useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
 
 export default function Index() {
+  const [searchBarValue, setSearchBarValue] = useState("");
+  const [filteredStations, setFilteredStations] = useState<StationData[]>([]);
+  const { data: stations, loading, error } = useQuery(() => fetchAllStations(), true);
 
-  const { data: stations, loading, error } = useQuery(() => fetchAllStations());
+  useEffect(() => {
+    setFilteredStations(stations || []);
+  }, [stations])
+
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+
+    const timeoutId = setTimeout(() => {
+      const result = filterStations(stations, searchBarValue.trim())
+      setFilteredStations(result);
+    }, 250);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchBarValue.trim()])
 
   let content: JSX.Element | null = null;
 
@@ -27,12 +45,23 @@ export default function Index() {
   else {
     content = (
       <FlatList
-        data={stations}
-        keyExtractor={(item) => item.name}
-        renderItem={({ item }) => (<StationCard 
-                                      {...item}
-                                    />)}
+        data={filteredStations}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (<StationCard
+          {...item}
+        />)}
         className="mt-8 mb-8 pb-32"
+        ListEmptyComponent={
+          !loading && !error
+            ? (
+              <View className="mt-10 px-5">
+                <Text className="text-gray-500 text-center">
+                  No stations found
+                </Text>
+              </View>
+            )
+            : null
+        }
       />
     );
   }
@@ -49,12 +78,13 @@ export default function Index() {
       <View className="flex-1 mt-6 px-6">
         <SearchBar
           placeholder="Search city"
+          value={searchBarValue}
+          onChangeText={(text) => {
+            setSearchBarValue(text)
+          }}
         />
         {content}
       </View>
     </View>
   )
-
-  
-
 }
