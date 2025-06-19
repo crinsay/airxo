@@ -33,11 +33,11 @@ export default function useQuery<T>(queryFunction: () => Promise<T>, autoQuery =
         }
     }, []);
 
-    return { 
-        data, 
-        loading, 
-        error, 
-        requeryFunction: executeQuery, 
-        resetQueryFunction: resetQuery 
+    return {
+        data,
+        loading,
+        error,
+        requeryFunction: executeQuery,
+        resetQueryFunction: resetQuery
     };
 }
