@@ -11,6 +11,8 @@ export interface StationData {
     postalCode: string;
     city: string;
     pm25: number;
+    pm10: number;
+    timestamp: string;
 }
 
 export const fetchAllStations = async (): Promise<StationData[]> => {
@@ -33,8 +35,10 @@ export const fetchAllStations = async (): Promise<StationData[]> => {
                 ...item.data,
                 postalCode: item.school.post_code,
                 pm25: item.data.pm25_avg.toFixed(1),
+                pm10: item.data.pm10_avg.toFixed(1),
                 timestamp: item.timestamp      
-            })) 
+            }))
+            .sort((a: any, b: any) => a.city.localeCompare(b.city))
             : [];
                  
         return result;

@@ -42,7 +42,7 @@ export default function Index() {
       <Image source={images.bg} className="absolute w-full h-full" resizeMode="cover" />
       <View className="flex-row items-center justify-between px-6 pt-10 mt-6">
         <Text className="text-foreground text-3xl font-bold">Airxo - Air Quality</Text>
-        <Link href="/info" className="text-foreground text-lg font-bold">
+        <Link href="/info" className="text-foreground text-lg font-bold p-2 rounded-full">
           <Image source={icons.questionMark} className="w-7 h-7" />
         </Link>
       </View>
