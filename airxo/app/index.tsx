@@ -3,14 +3,14 @@ import StationCard from "@/components/StationCard";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import useQuery from "@/hooks/useQuery";
-import { fetchCityStations } from "@/services/api";
+import { fetchAllStations } from "@/services/api";
 import { Link } from "expo-router";
 import { JSX } from "react";
 import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
 
 export default function Index() {
 
-  const { data: cities, loading, error } = useQuery(() => fetchCityStations("Warszawa"));
+  const { data: stations, loading, error } = useQuery(() => fetchAllStations());
 
   let content: JSX.Element | null = null;
 
@@ -27,12 +27,10 @@ export default function Index() {
   else {
     content = (
       <FlatList
-        data={cities}
-        keyExtractor={(item) => item.Nr.toString()}
+        data={stations}
+        keyExtractor={(item) => item.name}
         renderItem={({ item }) => (<StationCard 
-                                      id={item.Nr}
-                                      name={item["Nazwa stacji"]}
-                                      address={item.Adres}
+                                      {...item}
                                     />)}
         className="mt-8 mb-8 pb-32"
       />

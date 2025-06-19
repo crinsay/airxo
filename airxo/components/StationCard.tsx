@@ -1,16 +1,23 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import Collapsible from './Collapsible';
 
 interface StationCardProps {
-    id: number;
+    city: string;
     name: string;
-    address: string;
+    street: string;
+    pm25: number;
 }
 
-export default function StationCard({ id, name, address }: StationCardProps) {
-  return (
-    <View>
-      <Text>{`${id}`} {' '}  {' '} {`${address}`}</Text>
-    </View>
-  )
+export default function StationCard({ city, name, street, pm25 }: StationCardProps) {
+    return (
+        <View>
+            <Collapsible
+                title={`${city} - ${name}`}
+            >
+                <Text>{`PM2.5: ${pm25}`}</Text>
+            </Collapsible>
+
+        </View>
+    )
 }
