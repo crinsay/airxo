@@ -7,7 +7,7 @@ import Collapsible from './Collapsible';
 interface StationCardProps {
     city: string;
     name: string;
-    street: string;
+    street: string | null;
     pm25: number;
     pm10: number;
     timestamp: string;
@@ -34,11 +34,14 @@ export default function StationCard({ city, name, street, pm25, pm10, timestamp 
                 stationName={name}
                 qualityEmoji={icon}
             >
-                <Text>{`${street || "Street unknown"}\n\n`}</Text>
-                <View className="bg-gray-200 w-full rounded-xl mt-2 mx-2 p-2" style={shadow.shadow}>
-                    <Text>Quality: <Text className="text-m font-bold">{`${description}`}</Text></Text>
-                    <Text>PM2.5: <Text className="text-m font-bold">{`${pm25} µg/m³`}</Text></Text>
-                    <Text>PM10: <Text className="text-m font-bold">{`${pm10} µg/m³`}</Text></Text>
+                <View className="flex-column w-full">
+                    <Text>{`${street || "Street unknown"}\n`}</Text>
+                    <View className="bg-gray-200 w-full rounded-xl p-2" style={shadow.shadow}>
+                        <Text>Quality: <Text className="text-m font-bold">{`${description}`}</Text></Text>
+                        <Text>PM2.5: <Text className="text-m font-bold">{`${pm25} µg/m³`}</Text></Text>
+                        <Text>PM10: <Text className="text-m font-bold">{`${pm10} µg/m³`}</Text></Text>
+                    </View>
+                    <Text className="text-sm">{`\nMeasurement date: ${timestamp}`}</Text>
                 </View>
             </Collapsible>
 
