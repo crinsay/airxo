@@ -6,12 +6,12 @@ import useQuery from "@/hooks/useQuery";
 import { fetchAllStations, filterStations, StationData } from "@/services/api";
 import { Link } from "expo-router";
 import { JSX, useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, Image, RefreshControl, Text, View } from "react-native";
 
 export default function Index() {
   const [searchBarValue, setSearchBarValue] = useState("");
   const [filteredStations, setFilteredStations] = useState<StationData[]>([]);
-  const { data: stations, loading, error } = useQuery(() => fetchAllStations(), true);
+  const { data: stations, loading, error, requeryFunction } = useQuery(() => fetchAllStations(), true);
 
   useEffect(() => {
     setFilteredStations(stations || []);
@@ -61,6 +61,12 @@ export default function Index() {
               </View>
             )
             : null
+        }
+        refreshControl={
+          <RefreshControl refreshing={loading} onRefresh={() => {
+            setSearchBarValue("");
+            requeryFunction();
+          }} />
         }
       />
     );
